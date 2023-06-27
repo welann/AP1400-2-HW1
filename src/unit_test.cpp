@@ -1,9 +1,8 @@
-
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
 #include "hw1.h"
 
-/*
+
 TEST(HW1Test, ZEROS) {
     Matrix matrix{algebra::zeros(5, 6)};
 
@@ -16,6 +15,7 @@ TEST(HW1Test, ZEROS) {
         for (const auto& elem : row)
             EXPECT_DOUBLE_EQ(elem, 0);
 }
+
 
 TEST(HW1Test, ONES) {
     Matrix matrix{algebra::ones(7, 3)};
@@ -81,6 +81,13 @@ TEST(HW1Test, MULTIPLY2) {
 }
 
 TEST(HW1Test, MULTIPLY3) {
+    //-3   3  1.7
+    // 4  -4  2.6
+    //-5   5  3.5
+
+    //2.5 
+    //-2
+    //-5.5
     Matrix matrix1{{-3, 3, 1.7}, {4, -4, 2.6}, {-5, 5, 3.5}};
     Matrix matrix2{{2.5}, {-2}, {-5.5}};
     Matrix matrix{algebra::multiply(matrix1, matrix2)};
@@ -109,7 +116,7 @@ TEST(HW1Test, MULTIPLY4) {
     EXPECT_NEAR(matrix[1][0], 23, 0.03);
     EXPECT_NEAR(matrix[2][0], 19.3, 0.03);
 }
-
+/*
 TEST(HW1Test, SUM1) {
     // Caution: sum of an empty matrix
     EXPECT_TRUE(algebra::sum(Matrix{}, 1.5).empty());
