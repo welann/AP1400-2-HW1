@@ -116,7 +116,7 @@ TEST(HW1Test, MULTIPLY4) {
     EXPECT_NEAR(matrix[1][0], 23, 0.03);
     EXPECT_NEAR(matrix[2][0], 19.3, 0.03);
 }
-/*
+
 TEST(HW1Test, SUM1) {
     // Caution: sum of an empty matrix
     EXPECT_TRUE(algebra::sum(Matrix{}, 1.5).empty());
@@ -173,6 +173,9 @@ TEST(HW1Test, TRANSPOSE) {
 }
 
 TEST(HW1Test, MINOR1) {
+    //1   2   3
+    //4   5   6 
+    //7   8   9
     Matrix matrix{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
     Matrix minor = algebra::minor(matrix, 1, 2);
 
@@ -209,6 +212,10 @@ TEST(HW1Test, DETERMINANT1) {
     // Caution: non-square matrices have no determinant
     EXPECT_THROW(algebra::determinant(Matrix{{1, 2, 3}, {4, 5, 6}}), std::logic_error);
 
+//-1   1.5   -1.75   -2
+//-2   2.5   -2.75   -3
+//3,   3.5   -3.75   -4
+//4,   4.5   4.75    -5
     // test case
     Matrix matrix{{-1, 1.5, -1.75, -2}, {-2, 2.5, -2.75, -3}, {3, 3.5, -3.75, -4}, {4, 4.5, 4.75, -5}};
     EXPECT_NEAR(algebra::determinant(matrix), -28.5, 0.03);
@@ -291,7 +298,7 @@ TEST(HW1Test, CONCATENATE2) {
     EXPECT_DOUBLE_EQ(matrix[0][3], matrix2[0][0]);
     EXPECT_DOUBLE_EQ(matrix[1][3], matrix2[1][0]);
 }
-
+/*
 TEST(HW1Test, ERO_SWAP) {
     // Caution: r1 or r2 inputs are out of range
     EXPECT_THROW(algebra::ero_swap(Matrix{{1, 2}}, 0, 1), std::logic_error);
