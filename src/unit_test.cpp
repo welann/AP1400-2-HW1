@@ -298,7 +298,7 @@ TEST(HW1Test, CONCATENATE2) {
     EXPECT_DOUBLE_EQ(matrix[0][3], matrix2[0][0]);
     EXPECT_DOUBLE_EQ(matrix[1][3], matrix2[1][0]);
 }
-/*
+
 TEST(HW1Test, ERO_SWAP) {
     // Caution: r1 or r2 inputs are out of range
     EXPECT_THROW(algebra::ero_swap(Matrix{{1, 2}}, 0, 1), std::logic_error);
@@ -348,6 +348,8 @@ TEST(HW1Test, UPPER_TRIANGULAR1) {
     EXPECT_THROW(algebra::upper_triangular(Matrix{{1, 2, 3}, {4, 5, 6}}), std::logic_error);
 
     // test case 1
+    //1  2
+    //5  7
     Matrix matrix1{{1, 2}, {5, 7}};
     Matrix res1{algebra::upper_triangular(matrix1)};
     EXPECT_NEAR(res1[0][0], 1, 0.03);
@@ -355,6 +357,9 @@ TEST(HW1Test, UPPER_TRIANGULAR1) {
     EXPECT_NEAR(res1[1][1], -3, 0.03);
 
     // test case 2
+    //1 2 3
+    //4 7 5
+    //6 1 3
     Matrix matrix2{{1, 2, 3}, {4, 7, 5}, {6, 1, 3}};
     Matrix res2{algebra::upper_triangular(matrix2)};
     EXPECT_NEAR(res2[0][0], 1, 0.03);
@@ -374,7 +379,7 @@ TEST(HW1Test, BONUS) {
     EXPECT_NEAR(res2[2][1], 0, 0.03);
     EXPECT_NEAR(res2[2][2], 39/4.0, 0.03);
 }
-*/
+
 
 
 

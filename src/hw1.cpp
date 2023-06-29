@@ -249,3 +249,70 @@ Matrix algebra::concatenate(const Matrix& matrix1, const Matrix& matrix2, int ax
         return result;
     }
 }
+
+Matrix algebra::ero_swap(const Matrix& matrix, size_t r1, size_t r2)
+{
+
+    if (matrix.size() <= r1 || matrix.size() <= r2) {
+        throw std::logic_error("r1 or r2 inputs are out of range");
+    }
+
+    auto result = matrix;
+
+    result[r1] = matrix[r2];
+    result[r2] = matrix[r1];
+
+    return result;
+}
+
+Matrix algebra::ero_multiply(const Matrix& matrix, size_t r, double c)
+{
+    auto result = matrix;
+    for (auto& num : result[r]) {
+        num *= c;
+    }
+    return result;
+}
+
+Matrix algebra::ero_sum(const Matrix& matrix, size_t r1, double c, size_t r2)
+{
+    auto result = matrix;
+    auto temp = ero_multiply(matrix, r1, c);
+
+    for (int i = 0; i < matrix[0].size(); i++) {
+        result[r2][i] += temp[r1][i];
+    }
+    return result;
+}
+
+Matrix algebra::upper_triangular(const Matrix& matrix)
+{
+    if (matrix.empty()) {
+        return matrix;
+    }
+    if (matrix.size() != matrix[0].size()) {
+        throw std::logic_error("non-square matrices have no upper triangular form");
+    }
+
+    Matrix result = matrix;
+
+    for (int i = 0; i < matrix.size(); i++) {
+        //这里用来处理主对角线上元素为0的情况，但是考虑的似乎不太周全（管他呢x
+        if(result[i][i]==0){
+            int tnum=i;
+            while(result[tnum][tnum]==0){
+                tnum++;
+            }
+            result=ero_swap(result, i, tnum);
+        }
+        for (int j = i + 1; j < matrix.size(); j++) {
+            auto temp = result;
+
+            temp = ero_sum(temp, i, -temp[j][i] / temp[i][i], j);
+
+            result[j] = temp[j];
+        }
+    }
+
+    return result;
+}
