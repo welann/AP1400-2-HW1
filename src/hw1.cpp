@@ -214,10 +214,10 @@ Matrix algebra::concatenate(const Matrix& matrix1, const Matrix& matrix2, int ax
     if (axis == 0 && matrix1[0].size() != matrix2[0].size() || axis == 1 && matrix1.size() != matrix2.size()) {
         throw std::logic_error("matrices with wrong dimensions cannot be concatenated");
     }
-
+    Matrix result;
     if (axis == 0) {
-
-        Matrix result(matrix1.size() + matrix2.size(), std::vector<double>(matrix1[0].size(), 0));
+        result.clear();
+        result.resize(matrix1.size() + matrix2.size(), std::vector<double>(matrix1[0].size(), 0));
 
         for (int i = 0; i < matrix1.size(); i++) {
             for (int j = 0; j < matrix1[0].size(); j++) {
@@ -233,7 +233,8 @@ Matrix algebra::concatenate(const Matrix& matrix1, const Matrix& matrix2, int ax
 
     } else {
 
-        Matrix result(matrix1.size(), std::vector<double>(matrix1[0].size() + matrix2[0].size(), 0));
+        result.clear();
+        result.resize(matrix1.size(), std::vector<double>(matrix1[0].size() + matrix2[0].size(), 0));
 
         for (int i = 0; i < matrix1.size(); i++) {
             for (int j = 0; j < matrix1[0].size(); j++) {
